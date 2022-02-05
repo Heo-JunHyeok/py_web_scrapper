@@ -20,3 +20,6 @@
 
     # hello = say_hello(age="12",name="hyeok")
     # print(hello)
+
+# 1.8 module
+#     from (module) import (function) as (alias_name)
