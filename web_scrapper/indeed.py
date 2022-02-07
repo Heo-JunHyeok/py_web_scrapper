@@ -17,7 +17,12 @@ def extract_indeed_pages():
 
 def extract_indeed_jobs(last_page):
     jobs=[]
-    for page in range(last_page):
-        result=requests.get(f"{INDEED_URL}&start={page*LIMIT}")
-        print(result.status_code)
+    #for page in range(last_page):
+    result=requests.get(f"{INDEED_URL}&start={0*LIMIT}")
+    soup=BeautifulSoup(result.text,"html.parser")
+    results=soup.find_all('a',{"class": "fs-unmask"}) # find_all: 조건에 맞는 모든 것 찾기
+    for result in results:
+        title=result.find("span",title=True).text # find: 조건에 처음으로 부합하는 것 찾기
+        company=result.find("span",{"class": "companyName"}).string
+        print(title,company)
     return jobs
