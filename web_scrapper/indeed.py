@@ -30,7 +30,7 @@ def extract_job(html):
 def extract_jobs(last_page):
     jobs = []
     for page in range(last_page):
-        print(f"Scrapping page {page}")
+        print(f"Scrapping page {page+1}")
         result = requests.get(f"{INDEED_URL}&start={page*LIMIT}")
         soup = BeautifulSoup(result.text, "html.parser")
         # find_all: 조건에 맞는 모든 것 찾기
